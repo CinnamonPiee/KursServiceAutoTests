@@ -1,3 +1,5 @@
+import os
+
 import pytest
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options as OptionsChrome
@@ -14,7 +16,7 @@ def pytest_addoption(parser) -> None:
         "--language",
         action="store",
         default="ru",
-        help="Choose language what you want to open the site",
+        help="Choose language to open the site",
     )
 
 
@@ -29,25 +31,28 @@ def browser(request):
     )
     # options_chrome.add_argument("--start-fullscreen") # Запускает тесты в полноэкранном режиме
     # если отключена настройка о невидимости браузера
-    options_chrome.add_argument(
-        "--window-size=1920,1080")  # Устанавливает разрешение окна для отображения всех элементов
+    # options_chrome.add_argument(
+        # "--window-size=1920,1080") # Устанавливает разрешение окна для отображения всех элементов
     options_chrome.add_argument("--headless")  # Делает браузер невидимым
+    options_chrome.add_argument("--no-sandbox")  # Для работы в контейнере
+    options_chrome.add_argument("--disable-dev-shm-usage")  # Для работы в контейнере
+    options_chrome.add_argument(f"--user-data-dir=/tmp/chrome-user-{os.getpid()}")  # Уникальный профиль
 
     if browser_name == "chrome":
-        print("\nstart Chrome browser for test..")
+        print("\nStart Chrome browser for test..")
         browser = webdriver.Chrome(options=options_chrome)
-    # TODO Не работает браузер Яндекс, решить проблему
+
     elif browser_name == "yandex":
-        print("\nstart Yandex browser for test..")
-        options_chrome.binary_location = (
-            "/Applications/Yandex.app/Contents/MacOS/Yandex"
-        )
+        print("\nStart Yandex browser for test..")
         browser = webdriver.Chrome(options=options_chrome)
-    # TODO Создать по браузер Safari
+
+    elif browser_name == "safari":
+        print("\nStart Safari browser for test..")
+        browser = webdriver.Safari()
+
     else:
-        raise pytest.UsageError("--browser_name should be chrome or yandex or safari")
+        raise pytest.UsageError("--browser should be chrome, yandex, or safari")
 
     yield browser
-
-    print("\nquit browser..")
+    print("\nQuit browser..")
     browser.quit()
