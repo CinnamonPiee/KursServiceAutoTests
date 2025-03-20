@@ -1,7 +1,6 @@
 import re
 from typing import Any
 
-from dotenv import load_dotenv
 from selenium.common.exceptions import (
     NoSuchElementException,
     TimeoutException,
@@ -11,9 +10,6 @@ from selenium.webdriver.support import expected_conditions as ec
 from selenium.webdriver.support.wait import WebDriverWait
 
 from utils.logger_config import get_logger
-
-# Подгрузка переменных из .env файла
-load_dotenv()
 
 
 class BasePage:
@@ -173,7 +169,7 @@ class BasePage:
             self.logger.error(f"⚠️ Элемент НЕ найден или НЕ видим: {what}")
             return False
 
-    # Проверка редиректа статических ссылок
+    # Проверка редиректа статических ссылок и открытия новой вкладки.
     def is_redirect_correct(self, old_url, new_url, old_tabs, timeout=5) -> bool:
         try:
             new_tabs = self.browser.window_handles
