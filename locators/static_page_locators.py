@@ -19,7 +19,8 @@ class StaticPageLocators:
     WORKTIME_ICON = (By.CSS_SELECTOR, ".worktime > p > i")
     WORKTIME_TEXT = (By.CSS_SELECTOR, ".worktime > p")
     CHECK_LIST_IMG = (By.CLASS_NAME, "check-list")
-    CHECK_LIST_TEXT = (By.CSS_SELECTOR, "a[href='/check-list']")
+    CHECK_LIST_LINK = (By.CSS_SELECTOR, ".check-list > a")
+    CHECK_LIST_TEXT = (By.CSS_SELECTOR, ".check-list > a > p")
     CHECK_LIST_NUM = (By.ID, "check-list-big")
     LOGIN_BUTTON = (By.CSS_SELECTOR, "a[href='/site/login']")
     SIGNUP_BUTTON = (By.CSS_SELECTOR, "a[href='/site/signup']")
@@ -28,6 +29,7 @@ class StaticPageLocators:
                                    IMG_LINK_ON_CONTACTS_PAGE_QR, PHONE_NUMBER, TOWN, TOWN_ICON, TOWN_TEXT, WORKTIME,
                                    WORKTIME_ICON, WORKTIME_TEXT, CHECK_LIST_IMG, CHECK_LIST_TEXT, CHECK_LIST_NUM,
                                    LOGIN_BUTTON, SIGNUP_BUTTON]
+    list_header_modules_text = [PHONE_NUMBER, TOWN_TEXT, WORKTIME_TEXT, CHECK_LIST_TEXT, LOGIN_BUTTON, SIGNUP_BUTTON]
 
     # ----------------------
     # Локаторы кнопок справа
@@ -35,12 +37,15 @@ class StaticPageLocators:
 
     RIGHT_BUTTONS = (By.CLASS_NAME, "bottom-fix")
     ADD_TO_ORDER_EVACUATION_BUTTON = (By.CSS_SELECTOR, ".bottom-fix > a:nth-child(1)")
+    ADD_TO_ORDER_EVACUATION_TEXT = (By.CSS_SELECTOR, ".bottom-fix > a:nth-child(1) > p")
     CONTACTS_BUTTON = (By.CSS_SELECTOR, ".bottom-fix > a:nth-child(2)")
+    CONTACTS_TEXT = (By.CSS_SELECTOR, ".bottom-fix > a:nth-child(2) > p")
     MAIL_TO_BUTTON = (By.CSS_SELECTOR, ".bottom-fix > a:nth-child(3)")
     ADD_TO_ORDER_SERVICE = (By.CSS_SELECTOR, ".bottom-fix > a:nth-child(4)")
 
     list_right_modules_visible = [RIGHT_BUTTONS, ADD_TO_ORDER_EVACUATION_BUTTON, CONTACTS_BUTTON, MAIL_TO_BUTTON,
                                   ADD_TO_ORDER_SERVICE]
+    list_right_modules_text = [ADD_TO_ORDER_EVACUATION_TEXT, CONTACTS_TEXT]
 
     # ---------------------
     # Локаторы кнопок слева
@@ -48,10 +53,14 @@ class StaticPageLocators:
 
     LEFT_BUTTONS = (By.CLASS_NAME, "bottom-fix2")
     REGISTRATION_FOR_MAINTENANCE = (By.CSS_SELECTOR, ".bottom-fix2 > a:nth-child(1)")
+    REGISTRATION_FOR_MAINTENANCE_TEXT = (By.CSS_SELECTOR, ".bottom-fix2 > a:nth-child(1) > p")
     DIAGNOSTICS = (By.CSS_SELECTOR, ".bottom-fix2 > a:nth-child(2)")
+    DIAGNOSTICS_TEXT = (By.CSS_SELECTOR, ".bottom-fix2 > a:nth-child(2) > p")
     TIRE_SERVICE = (By.CSS_SELECTOR, ".bottom-fix2 > a:nth-child(3)")
+    TIRE_SERVICE_TEXT = (By.CSS_SELECTOR, ".bottom-fix2 > a:nth-child(3) > p")
 
     list_left_modules_visible = [LEFT_BUTTONS, REGISTRATION_FOR_MAINTENANCE, DIAGNOSTICS, TIRE_SERVICE]
+    list_left_modules_text = [REGISTRATION_FOR_MAINTENANCE_TEXT, DIAGNOSTICS_TEXT, TIRE_SERVICE_TEXT]
 
     # -----------------------
     # Локаторы нижнего футера
@@ -112,3 +121,8 @@ class StaticPageLocators:
                                    VK_LINK, WHATSAPP_LINK, BOTTOM_IN_FOOTER, BOTTOM_IMG_IN_FOOTER,
                                    BOTTOM_TEXT_IN_FOOTER, BOTTOM_CASH_IMG_IN_FOOTER, BOTTOM_MASTER_CARD_IMG_IN_FOOTER,
                                    BOTTOM_VISA_IMG_IN_FOOTER, BOTTOM_SBERBANK_IMG_IN_FOOTER, BOTTOM_HALVA_IMG_IN_FOOTER]
+    list_footer_modules_text = [CALL_NUMBER_BUTTON, YANDEX_ADDRESS_BUTTON, REGISTRATION_FOR_MAINTENANCE_BUTTON,
+                                REGISTRATION_FOR_DIAGNOSTICS_BUTTON, REGISTRATION_FOR_TIRE_SERVICE_BUTTON,
+                                REGISTRATION_FOR_WHEEL_ALIGNMENT_BUTTON, REGISTRATION_FOR_EVACUATION_BUTTON,
+                                CONTACTS_FOOTER_BUTTON, ABOUT_SERVICE_FOOTER_BUTTON, INSURANCE_FOOTER_BUTTON,
+                                REVIEWS_FOOTER_BUTTON, WARRANTY_FOOTER_BUTTON, BOTTOM_TEXT_IN_FOOTER]
