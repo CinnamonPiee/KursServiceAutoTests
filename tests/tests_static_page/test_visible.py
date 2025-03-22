@@ -6,9 +6,9 @@ from pages.static_page.visible import VisibleStaticPage
 @pytest.mark.static_page_visible
 @pytest.mark.static_page
 class TestStaticPage:
-    # -----------------------------------------
-    # Тесты отображения модулей верхнего хедера
-    # -----------------------------------------
+    # -------------------------------------------------
+    # Тесты отображения модулей на статической странице
+    # -------------------------------------------------
 
     link: str = "https://kurs-service.ru/"
     page_name: str = "visible_static_page"
