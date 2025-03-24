@@ -172,3 +172,13 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
+
+# Google API credentials
+config/*.json
+
+# Folders with logs and bugs
+logs/
+bug_reports/
+
+# Folders and files with convertation CSV in XLSX
+*.xlsx

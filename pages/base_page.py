@@ -9,6 +9,7 @@ from selenium.common.exceptions import (
 from selenium.webdriver.support import expected_conditions as ec
 from selenium.webdriver.support.wait import WebDriverWait
 
+from utils.csv_config import log_csv_error
 from utils.logger_config import get_logger
 
 
@@ -17,7 +18,8 @@ class BasePage:
         self.browser: Any = browser
         self.browser.implicitly_wait(timeout)  # Стоит 0, так как в каждой функции за ожидание отвечает WebDriverWait
         self.url: Any = url
-        self.logger = get_logger(page_name)
+        self.page_name = page_name
+        self.logger = get_logger(self.page_name)
 
     def log_info(self, message):
         """Логирует информационное сообщение"""
@@ -26,10 +28,12 @@ class BasePage:
     def log_warning(self, message):
         """Логирует сообщение об предупреждении"""
         self.logger.warning(f"{message}")
+        log_csv_error(self.page_name, message, self.url)
 
     def log_error(self, message):
         """Логирует сообщение об ошибке"""
         self.logger.error(f"{message}")
+        log_csv_error(self.page_name, message, self.url)
 
     def open(self) -> None:
         """Открывает страницу по указанному URL и логирует событие"""
@@ -38,6 +42,7 @@ class BasePage:
             self.browser.get(self.url)
         else:
             self.logger.error("Не указан URL для открытия страницы.")
+            log_csv_error(self.page_name, "Не указан URL для открытия страницы.", self.url)
 
     # ----------------
     # Функции проверок
@@ -53,6 +58,7 @@ class BasePage:
             return True
         except TimeoutException:
             self.logger.warning(f"⚠️ Элемент НЕ найден: {what}")
+            log_csv_error(self.page_name, f"⚠️ Элемент НЕ найден: {what}", self.url)
             return False
 
     # Проверка, что элемент не появиться через определенное время
@@ -140,9 +146,13 @@ class BasePage:
                 self.logger.warning(
                     f'⚠️ Текст элемента НЕ совпадает: {what} (Ожидалось: "{text}", Получено: "{actual_text}")'
                 )
+                log_csv_error(self.page_name,
+                              f'⚠️ Текст элемента НЕ совпадает: {what} (Ожидалось: "{text}", Получено: "{actual_text}")',
+                              self.url)
                 return False
         except TimeoutException:
             self.logger.warning(f"⚠️ Элемент НЕ найден или НЕ видим: {what}")
+            log_csv_error(self.page_name, f"⚠️ Элемент НЕ найден или НЕ видим: {what}", self.url)
             return False
 
     # Проверка атрибута элемента

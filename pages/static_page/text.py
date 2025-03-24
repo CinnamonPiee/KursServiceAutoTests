@@ -9,7 +9,7 @@ class TextStaticPage(BasePage):
 
     # Проверки текста модулей верхнего хедера
     def should_be_correct_text_header_modules_on_static_page(self) -> None:
-        correct_text = ["8 (910) 448-45-06", "Москва, 1-я Мытищинская 16 с.1",
+        correct_text = ["8 (910) 448-45-06", "Масква, 1-я Мытищинская 16 с.1",
                         "Работаем: Пн-Пт с 9:00 - 20:00,\nСб с 9:00 - 17:00, Вс выходной", "ЧЕК ЛИСТ - 0", "ВХОД",
                         "РЕГИСТРАЦИЯ"]
         for text, item in zip(correct_text, StaticPageLocators.list_header_modules_text):
